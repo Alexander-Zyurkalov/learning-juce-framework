@@ -1,0 +1,5 @@
+cmake_minimum_required(VERSION 3.15)
+project(LEARNING_JUCE_FRAMEWORK VERSION 0.0.1 LANGUAGES CXX)
+#add_subdirectory(libs/JUCE)
+#add_subdirectory(src)
+add_executable(learning_juce_framework src/main.cpp)
