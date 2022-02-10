@@ -2,7 +2,9 @@
 // Created by Alexandr Zyurkalov on 09.02.22.
 //
 #include <iostream>
-int main(int argc,char * argv[]){
+#include <juce_core/juce_core.h>
+int main(int argc, char* argv[]){
     std::cout << "Hello World" << std::endl;
-    return 1;
+    juce::ignoreUnused(argc, argv);
+    return 0;
 }
