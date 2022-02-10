@@ -9,8 +9,8 @@ class MainWindowTutorialApplication  : public juce::JUCEApplication
 {
 public:
     //...
-    const juce::String getApplicationName() override       { return "ProjectInfo::projectName"; }
-    const juce::String getApplicationVersion() override    { return "ProjectInfo::versionString"; }
+    const juce::String getApplicationName() override       { return JUCE_APPLICATION_NAME_STRING; }
+    const juce::String getApplicationVersion() override    { return HELLO_1; }
     //==============================================================================
     class MainWindow    : public juce::DocumentWindow
     {

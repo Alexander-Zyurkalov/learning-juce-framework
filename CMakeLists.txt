@@ -8,6 +8,8 @@ target_compile_definitions(learning_juce_framework
         PRIVATE
             JUCE_WEB_BROWSER=0
             JUCE_USE_CURL=0
+            JUCE_APPLICATION_NAME_STRING="hello world"
+            HELLO_1="hello 1"
         )
 target_link_libraries(learning_juce_framework
         PRIVATE
