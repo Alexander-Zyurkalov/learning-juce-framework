@@ -3,6 +3,7 @@
 //
 #include "juce_core/juce_core.h"
 #include "juce_gui_basics/juce_gui_basics.h"
+#include "MainComponent.h"
 
 //==============================================================================
 class MainWindowTutorialApplication  : public juce::JUCEApplication
@@ -19,8 +20,11 @@ public:
                                                           juce::Colours::lightgrey,
                                                           DocumentWindow::allButtons)
         {
+            setContentOwned(new MainComponent(), true);
             centreWithSize (300, 200);
             setVisible (true);
+            setResizable(true, true);
+            setUsingNativeTitleBar (true);
         }
 
         void closeButtonPressed() override

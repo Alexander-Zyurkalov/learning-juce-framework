@@ -3,7 +3,7 @@ project(LEARNING_JUCE_FRAMEWORK VERSION 0.0.1 LANGUAGES CXX)
 add_subdirectory(libs/JUCE)
 juce_add_gui_app(learning_juce_framework PRODUCT_NAME "Gui App Example")
 #add_executable(learning_juce_framework src/main.cpp)
-target_sources(learning_juce_framework PRIVATE src/Main.cpp)
+target_sources(learning_juce_framework PRIVATE src/Main.cpp src/MainComponent.cpp)
 target_compile_definitions(learning_juce_framework
         PRIVATE
             JUCE_WEB_BROWSER=0
