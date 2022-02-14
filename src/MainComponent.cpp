@@ -10,8 +10,6 @@ MainComponent::MainComponent ()
     //[Constructor_pre] You can add your own custom stuff here..
     //[/Constructor_pre]
     addAndMakeVisible(blueComponent);
-    blueComponent.setBounds(200, 100, 400, 400);
-
     setSize (600, 400);
 
 }
@@ -25,5 +23,5 @@ void MainComponent::paint (juce::Graphics& g)
 
 void MainComponent::resized()
 {
-
+    blueComponent.setBounds(0, 0, this->getWidth(), this->getHeight()/2);
 }
