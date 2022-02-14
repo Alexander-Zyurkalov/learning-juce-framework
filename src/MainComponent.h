@@ -22,6 +22,7 @@
 //[Headers]     -- You can add your own extra header files here --
 #include "juce_core/juce_core.h"
 #include "juce_gui_basics/juce_gui_basics.h"
+#include "BlueComponent.h"
 //[/Headers]
 
 
@@ -63,6 +64,7 @@ private:
     std::unique_ptr<juce::Slider> juce__slider;
     std::unique_ptr<juce::Viewport> juce__viewport;
 
+    BlueComponent blueComponent;
 
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainComponent)

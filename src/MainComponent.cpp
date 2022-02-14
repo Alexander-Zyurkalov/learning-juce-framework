@@ -31,6 +31,8 @@ MainComponent::MainComponent ()
 {
     //[Constructor_pre] You can add your own custom stuff here..
     //[/Constructor_pre]
+    addAndMakeVisible(blueComponent);
+    blueComponent.setBounds(200, 100, 400, 400);
 
     juce__textButton.reset (new juce::TextButton ("new button"));
     addAndMakeVisible (juce__textButton.get());
@@ -100,11 +102,7 @@ void MainComponent::paint (juce::Graphics& g)
 
 void MainComponent::resized()
 {
-    //[UserPreResize] Add your own custom resize code here..
-    //[/UserPreResize]
 
-    //[UserResized] Add your own custom resize handling here..
-    //[/UserResized]
 }
 
 void MainComponent::buttonClicked (juce::Button* buttonThatWasClicked)
