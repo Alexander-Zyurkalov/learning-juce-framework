@@ -26,6 +26,7 @@ public:
 private:
     BlueComponent blueComponent;
     juce::Slider slider1;
+    juce::Random random;
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainComponent)
 };
