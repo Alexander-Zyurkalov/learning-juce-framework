@@ -32,7 +32,13 @@ void MainComponent::resized()
     slider1.setBounds(getWidth() / 2 - 200, getHeight() / 2 - 100, 400, 200);
 }
 
-void MainComponent::prepareToPlay(int samplesPerBlockExpected, double sampleRate) {}
+void MainComponent::prepareToPlay(int samplesPerBlockExpected, double sampleRate) {
+    juce::String message;
+    message << "Preparing to play audio...\n";
+    message << " samplesPerBlockExpected = " << samplesPerBlockExpected << "\n";
+    message << " sampleRate = " << sampleRate;
+    juce::Logger::getCurrentLogger()->writeToLog (message);
+}
 
 void MainComponent::getNextAudioBlock(const juce::AudioSourceChannelInfo &bufferToFill) {
     auto level = (float) slider1.getValue();
