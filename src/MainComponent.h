@@ -2,11 +2,12 @@
 
 #include "juce_core/juce_core.h"
 #include "juce_gui_basics/juce_gui_basics.h"
+#include "juce_audio_utils/juce_audio_utils.h"
 #include "BlueComponent.h"
 
 
 
-class MainComponent  : public juce::Component
+class MainComponent  : public juce::AudioAppComponent
 {
 public:
     //==============================================================================
@@ -16,7 +17,11 @@ public:
     void paint (juce::Graphics& g) override;
     void resized() override;
 
+    void prepareToPlay(int samplesPerBlockExpected, double sampleRate) override;
 
+    void getNextAudioBlock(const juce::AudioSourceChannelInfo &bufferToFill) override;
+
+    void releaseResources() override;
 
 private:
     BlueComponent blueComponent;
