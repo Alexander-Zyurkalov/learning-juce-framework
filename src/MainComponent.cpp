@@ -1,7 +1,7 @@
 
 
 #include "MainComponent.h"
-
+#include <math.h>
 
 
 //==============================================================================
@@ -10,8 +10,9 @@ MainComponent::MainComponent ()
     addAndMakeVisible(blueComponent);
     slider1.setSliderStyle(juce::Slider::SliderStyle::RotaryHorizontalVerticalDrag);
     slider1.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 50, 25);
-    slider1.setRange(0.0f, 0.25f);
-    slider1.setValue(0.0f);
+    slider1.setRange(50.0,5000.0, 0.1f);
+    slider1.setValue(50.0);
+    slider1.setSkewFactorFromMidPoint(500.0);
     addAndMakeVisible(slider1);
     setSize (600, 400);
     setAudioChannels (0, 2);
@@ -38,17 +39,32 @@ void MainComponent::prepareToPlay(int samplesPerBlockExpected, double sampleRate
     message << " samplesPerBlockExpected = " << samplesPerBlockExpected << "\n";
     message << " sampleRate = " << sampleRate;
     juce::Logger::getCurrentLogger()->writeToLog (message);
+    currentSampleRate = sampleRate;
+    updateAngleDelta();
+    slider1.onValueChange = [this]
+    {
+        if (currentSampleRate > 0.0) {
+            updateAngleDelta();
+        }
+    };
 }
 
 void MainComponent::getNextAudioBlock(const juce::AudioSourceChannelInfo &bufferToFill) {
-    auto level = (float) slider1.getValue();
-    for (auto channel = 0; channel < bufferToFill.buffer->getNumChannels(); ++channel) {
-        auto *buffer = bufferToFill.buffer->getWritePointer(channel, bufferToFill.startSample);
-        for (auto sample = 0; sample < bufferToFill.numSamples; ++sample) {
-            auto noise = random.nextFloat() * 2.0f - 1.0f;
-            buffer[sample] = noise * level;
-        }
+    auto level = 0.125f;
+    auto *leftBuffer = bufferToFill.buffer->getWritePointer(0, bufferToFill.startSample);
+    auto *rightBuffer = bufferToFill.buffer->getWritePointer(1, bufferToFill.startSample);
+    for (auto sampleNum = 0; sampleNum < bufferToFill.numSamples; ++sampleNum) {
+        auto currentSampleValue = (float) std::sin(currentAngle);
+        currentAngle+=angleDelta;
+        leftBuffer[sampleNum] = currentSampleValue * level;
+        rightBuffer[sampleNum] = currentSampleValue * level;
     }
 }
 
 void MainComponent::releaseResources() {}
+
+void MainComponent::updateAngleDelta() {
+    auto cyclesPerSample = slider1.getValue() / currentSampleRate;
+    angleDelta = cyclesPerSample * 2.0 * juce::MathConstants<double>::pi;
+
+}

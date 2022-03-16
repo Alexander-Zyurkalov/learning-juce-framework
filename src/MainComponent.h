@@ -23,10 +23,15 @@ public:
 
     void releaseResources() override;
 
+    void updateAngleDelta();
+
 private:
     BlueComponent blueComponent;
     juce::Slider slider1;
     juce::Random random;
+    double currentSampleRate = 0.0;
+    double currentAngle = 0.0;
+    double angleDelta = 0.0;
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainComponent)
 };
