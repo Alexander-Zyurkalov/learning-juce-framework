@@ -25,6 +25,8 @@ public:
 
     void updateAngleDelta();
 
+    double delayLine(double x);
+
 private:
     BlueComponent blueComponent;
     juce::Slider slider1;
@@ -32,6 +34,9 @@ private:
     double currentSampleRate = 0.0;
     double currentAngle = 0.0;
     double angleDelta = 0.0;
+    static const int M = 44100;
+    int bufferPosition = 0;
+    double buffer[M];
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainComponent)
 };

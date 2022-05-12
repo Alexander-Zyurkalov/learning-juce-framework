@@ -56,7 +56,7 @@ void MainComponent::getNextAudioBlock(const juce::AudioSourceChannelInfo &buffer
     for (auto sampleNum = 0; sampleNum < bufferToFill.numSamples; ++sampleNum) {
         auto currentSampleValue = (float) std::sin(currentAngle);
         currentAngle+=angleDelta;
-        leftBuffer[sampleNum] = currentSampleValue * level;
+        leftBuffer[sampleNum] = delayLine(currentSampleValue * level);
         rightBuffer[sampleNum] = currentSampleValue * level;
     }
 }
@@ -67,4 +67,13 @@ void MainComponent::updateAngleDelta() {
     auto cyclesPerSample = slider1.getValue() / currentSampleRate;
     angleDelta = cyclesPerSample * 2.0 * juce::MathConstants<double>::pi;
 
+}
+
+double MainComponent::delayLine(double x) {
+    double y = buffer[bufferPosition];
+    buffer[bufferPosition++] = x;
+    if (bufferPosition >= M) {
+        bufferPosition -= M;
+    }
+    return y;
 }
