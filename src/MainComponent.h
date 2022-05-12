@@ -25,7 +25,7 @@ public:
 
     void updateAngleDelta();
 
-    double delayLine(double x);
+    float delayLine(float x);
 
 private:
     BlueComponent blueComponent;

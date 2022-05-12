@@ -69,7 +69,7 @@ void MainComponent::updateAngleDelta() {
 
 }
 
-double MainComponent::delayLine(double x) {
+float MainComponent::delayLine(float x) {
     double y = buffer[bufferPosition];
     buffer[bufferPosition++] = x;
     if (bufferPosition >= M) {
